@@ -11,29 +11,50 @@
 </head>
 <body>
     <header><h1>CryptoBot Analytics</h1></header>
-    <div><h3 id="bot-id"></h3></div>
     
+    <div class="flex">
 
-    <div id="data-chart"></div>
+        <div class="menu">
+            <h4 class="bot-list-link">Bots</h4>
+            <ul class="bot-list">
+                <li>one</li>
+                <li>two</li>
+                <li>three</li>
+                <li>four</li>
+            </ul>
 
-    <div>
-        <table>
-            <tr>
-                <th>Current BNB</th>
-                <th>Current GBP</th>
-                <th>If Bought & Held</th>
-                <th id="profit-box">Total Profit</th>
-            </tr>
-            <tr>
-                <td id="BNB-holdings"></td>
-                <td id="GBP-holdings"></td>
-                <td id="b-and-h"></td>
-                <td id="bot-profit"></td>
-            </tr>
-        </table>
+        </div>
+    
+        <div class="data">
+            <div><h3 id="bot-id"></h3></div>        
+    
+            <div id="data-chart"></div>
+    
+            <div>
+                <table>
+                    <tr>
+                        <th>Current BNB</th>
+                        <th>Current GBP</th>
+                        <th>If Bought & Held</th>
+                        <th id="profit-box">Total Profit</th>
+                    </tr>
+                    <tr>
+                        <td id="BNB-holdings"></td>
+                        <td id="GBP-holdings"></td>
+                        <td id="b-and-h"></td>
+                        <td id="bot-profit"></td>
+                    </tr>
+                </table>
+            </div>
+    
+            <div id="data-chart-2"></div>
+        </div>
+
     </div>
+    
+   
 
-    <div id="data-chart-2"></div>
+    
 <!-- SCRIPT IMPORTS -->
 
     <script src="script.js"></script>

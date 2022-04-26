@@ -6,6 +6,23 @@
     color: #2568fb;
 }
 
+.flex
+{
+    display: flex;
+}
+
+.menu
+{
+    flex: 1;
+}
+
+.data
+{
+    width: 85%;    
+    flex-shrink: 0;
+    
+}
+
 th 
 {
     color: white;
