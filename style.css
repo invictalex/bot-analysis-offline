@@ -1,0 +1,59 @@
+*
+{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    color: #2568fb;
+}
+
+th 
+{
+    color: white;
+    background-color: #2568fb;    
+}
+
+th, td 
+{
+    padding: 5px;
+}
+
+table
+{
+    border: #2568fb 2px solid;
+    margin-bottom: 70px;
+}
+
+#profit-box
+{
+    background-color: lightgreen;
+    color: #2568fb;
+}
+
+#data-chart
+{
+    
+    width: 800px;
+    height: auto;
+    border: #2568fb solid 3px;
+    padding: 15px;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+}
+
+#data-chart-2
+{
+    
+    margin-top: 60px;
+    width: 800px;
+    height: auto;
+    border: #2568fb solid 3px;
+    padding: 15px;
+    box-sizing: border-box;
+    margin-bottom: 60px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 5px;
+  }
