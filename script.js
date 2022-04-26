@@ -1,9 +1,11 @@
 $(function()
 {
-    var botAPI = "https://cryptobot.vx1.uk/x_spikefish/metrics/x_get_spikefish_order_history.php?bot_id=25"
+    //var botAPI = "https://cryptobot.vx1.uk/x_spikefish/metrics/x_get_spikefish_order_history.php?bot_id=25"
     
-    $.getJSON(botAPI).done(function(rawData)
-    {   
+   // $.getJSON(botAPI).done(function(rawData)
+   // {   
+
+        var rawData = [{"idx":"2679","bot_id":"25","symbol_pair":"BNBGBP","order_id":"o638CSQMl3J6PCz2OiUCnu","order_side":"BUY","order_rate":"312.40000000","order_qty":"1.0200","start_time":"2022-04-20 09:35:02","end_time":"2022-04-21 20:43:02"},{"idx":"2651","bot_id":"25","symbol_pair":"BNBGBP","order_id":"yve1iN4W5CWuHOyYs50e8P","order_side":"SELL","order_rate":"328.10000000","order_qty":"1.0000","start_time":"2022-04-11 10:00:03","end_time":"2022-04-20 09:35:02"},{"idx":"2527","bot_id":"25","symbol_pair":"BNBGBP","order_id":"3hbncKi7cid5zpBwd4HF4e","order_side":"BUY","order_rate":"312.50000000","order_qty":"1.0200","start_time":"2022-03-28 00:34:03","end_time":"2022-04-11 10:00:03"},{"idx":"2491","bot_id":"25","symbol_pair":"BNBGBP","order_id":"RXWrqwE50HFS7e1Tn10Gp5","order_side":"SELL","order_rate":"328.30000000","order_qty":"1.0000","start_time":"2022-02-17 23:22:11","end_time":"2022-03-28 00:34:03"},{"idx":"2468","bot_id":"25","symbol_pair":"BNBGBP","order_id":"Rx9e1Z4naCxfY4OxXSgUG9","order_side":"SELL","order_rate":"312.60000000","order_qty":"1.0000","start_time":"2022-03-04 00:47:02","end_time":"2022-03-24 06:29:02"},{"idx":"2285","bot_id":"25","symbol_pair":"BNBGBP","order_id":"Qeahwr2tqxcIEO7Mn15IES","order_side":"SELL","order_rate":"297.40000000","order_qty":"1.0000","start_time":"2022-03-10 13:07:03","end_time":"2022-03-16 10:07:03"},{"idx":"2197","bot_id":"25","symbol_pair":"BNBGBP","order_id":"ZFtwOQCa7AE6O56Ay9bi5A","order_side":"BUY","order_rate":"283.20000000","order_qty":"1.0200","start_time":"2022-03-09 02:13:04","end_time":"2022-03-10 13:07:03"},{"idx":"2171","bot_id":"25","symbol_pair":"BNBGBP","order_id":"EcNi4NUovekdeKUp6tWNKg","order_side":"SELL","order_rate":"297.50000000","order_qty":"1.0000","start_time":"2022-03-04 22:20:02","end_time":"2022-03-09 02:13:04"},{"idx":"2135","bot_id":"25","symbol_pair":"BNBGBP","order_id":"7i0OkvrBMDofuIfoOlxjqj","order_side":"BUY","order_rate":"283.30000000","order_qty":"1.0200","start_time":"2022-03-01 00:47:02","end_time":"2022-03-04 22:20:02"},{"idx":"2127","bot_id":"25","symbol_pair":"BNBGBP","order_id":"THbidJbhDQmThbcgcThcYx","order_side":"BUY","order_rate":"297.70000000","order_qty":"1.0200","start_time":"2022-03-01 09:01:02","end_time":"2022-03-04 00:47:02"},{"idx":"2007","bot_id":"25","symbol_pair":"BNBGBP","order_id":"ndOkEd2SLu7ikz73i4inXR","order_side":"SELL","order_rate":"312.70000000","order_qty":"1.0000","start_time":"2022-02-17 23:22:11","end_time":"2022-03-01 09:01:02"},{"idx":"1979","bot_id":"25","symbol_pair":"BNBGBP","order_id":"FkffuFZ5XZwUIobP4NCYnR","order_side":"SELL","order_rate":"297.60000000","order_qty":"1.0000","start_time":"2022-02-20 05:02:01","end_time":"2022-03-01 00:47:02"},{"idx":"1587","bot_id":"25","symbol_pair":"BNBGBP","order_id":"ZIvTQpcA5SCAic9puqkDA6","order_side":"BUY","order_rate":"283.40000000","order_qty":"1.0200","start_time":"2022-02-19 01:44:02","end_time":"2022-02-20 05:02:01"},{"idx":"1583","bot_id":"25","symbol_pair":"BNBGBP","order_id":"u5OTMZh2sLQccPIs7BJ4Qv","order_side":"SELL","order_rate":"297.70000000","order_qty":"1.0000","start_time":"2022-02-18 18:18:48","end_time":"2022-02-19 01:44:02"}];
         var data = rawData.reverse();
 
 
@@ -283,9 +285,9 @@ $(function()
         document.getElementById("bot-profit").innerHTML = "£" + botProfitDataSet[botProfitDataSet.length -1];        
             
     
-    }).fail(function()
-    {
-        alert("API call failed");
-    });  
+    //}).fail(function()
+    //{
+    //    alert("API call failed");
+    //});  
 
 });
