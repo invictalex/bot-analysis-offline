@@ -14,10 +14,10 @@ $(function()
 
     var bot15 = [{"idx":"954","bot_id":"15","symbol_pair":"BNBBTC","order_id":"zibudZJvKtfexMj32Qp59X","order_side":"BUY","order_rate":"0.01046800","order_qty":"1.0170","start_time":"2022-01-27 22:22:04","end_time":"2022-01-28 01:30:02"},{"idx":"927","bot_id":"15","symbol_pair":"BNBBTC","order_id":"zlHrlXPcglkhzeKrvDZ3ZA","order_side":"SELL","order_rate":"0.01082600","order_qty":"1.0000","start_time":"2022-01-23 20:33:02","end_time":"2022-01-27 22:22:04"},{"idx":"892","bot_id":"15","symbol_pair":"BNBBTC","order_id":"EGdbSx8Sl1wXkTRMmOzsmR","order_side":"BUY","order_rate":"0.01046000","order_qty":"1.0170","start_time":"2022-01-23 11:02:02","end_time":"2022-01-23 20:33:02"},{"idx":"868","bot_id":"15","symbol_pair":"BNBBTC","order_id":"Bs8XrimG13HL7ZbD0ZEjvW","order_side":"SELL","order_rate":"0.01081800","order_qty":"1.0000","start_time":"2022-01-21 21:48:03","end_time":"2022-01-23 11:02:02"},{"idx":"814","bot_id":"15","symbol_pair":"BNBBTC","order_id":"Acvncs3cW8cnc0x5IxYtb3","order_side":"BUY","order_rate":"0.01045200","order_qty":"1.0170","start_time":"2022-01-11 13:20:02","end_time":"2022-01-21 21:48:03"},{"idx":"753","bot_id":"15","symbol_pair":"BNBBTC","order_id":"eLaIahJUSSyJsJBsdhkRzC","order_side":"BUY","order_rate":"0.01080400","order_qty":"1.0170","start_time":"2022-01-13 19:46:02","end_time":"2022-01-20 19:28:03"},{"idx":"713","bot_id":"15","symbol_pair":"BNBBTC","order_id":"rld5mSKXQvb28gajaNqXra","order_side":"SELL","order_rate":"0.01117400","order_qty":"1.0000","start_time":"2022-01-05 22:35:04","end_time":"2022-01-13 19:46:02"},{"idx":"652","bot_id":"15","symbol_pair":"BNBBTC","order_id":"HComrYJaClebienZvGbAyW","order_side":"SELL","order_rate":"0.01081000","order_qty":"1.0000","start_time":"2022-01-08 18:13:04","end_time":"2022-01-11 13:20:02"},{"idx":"567","bot_id":"15","symbol_pair":"BNBBTC","order_id":"WmYFbxfo2EnChCFMTAQUf2","order_side":"BUY","order_rate":"0.01044400","order_qty":"1.0170","start_time":"2021-12-24 00:31:08","end_time":"2022-01-08 18:13:04"},{"idx":"405","bot_id":"15","symbol_pair":"BNBBTC","order_id":"AcgAMSog1OOy4Ldl5IbIq9","order_side":"BUY","order_rate":"0.01079600","order_qty":"1.0170","start_time":"2021-12-27 22:23:02","end_time":"2022-01-05 22:35:04"},{"idx":"137","bot_id":"15","symbol_pair":"BNBBTC","order_id":"a9TFIXG0c0fCoLrkgB0gfN","order_side":"SELL","order_rate":"0.01116600","order_qty":"1.0000","start_time":"2021-12-24 00:23:35","end_time":"2021-12-27 22:23:02"}];
 
-    var data = bot15.reverse();
+    var data = bot25.reverse();
 
 
-    //-----------------DETERMINS INITIAL BOT CONDITIONS-----------    
+    //-----------------SETS INITIAL BOT QUANTITIES-----------    
 
     var aInitialQty = parseFloat(data[0]["order_qty"]);    
     if (data[0]["order_side"] === "BUY")
@@ -44,11 +44,11 @@ $(function()
     var generalDataSet = 
     [{
         x: startDate,
-        y: aInitialRate, //CHANGED
+        y: aInitialRate.toFixed(5), //CHANGED
         orderNo: "n/a",
         side: "n/a",
-        profitMarginal: 0,
-        profitTotal: 0,
+        //profitMarginal: 0,
+        //profitTotal: 0,
         ROImarginal: 0,
         ROItotal: 0            
     }];
@@ -79,14 +79,14 @@ $(function()
     
         var bQty = aQty * aRate * -1;
 
-        //----------CALCULATING MARGINAL AND AGGREGATE PROFITS------------------
+        //----------CALCULATING ROI------------------
 
         aQtyAgg += aQty;
         bQtyAgg += bQty;                                  
-        var bRate = 1;            
-        var pastProfit = totalProfit;               
-        var totalProfit = (aQtyAgg * aRate) + (bQtyAgg * bRate);
-        var orderProfit = totalProfit - pastProfit;
+        //var bRate = 1;            
+        //var pastProfit = totalProfit;               
+        //var totalProfit = (aQtyAgg * aRate) + (bQtyAgg * bRate);
+        //var orderProfit = totalProfit - pastProfit;
 
         
 
@@ -95,14 +95,16 @@ $(function()
         var totalValue = aValue + bValue;
 
         var pastROI = totalROI;
-        var totalROI = Math.floor((totalValue/initialInvestment)*10000)/100;
-        var marginalROI = Math.floor(100*(totalROI - pastROI))/100;
+        console.log(totalValue);
+        console.log(initialInvestment);
+        var totalROI = 100*(totalValue/initialInvestment);
+        var marginalROI = totalROI - pastROI;
         
+        //-------------ROUNDING TO CREATE PRESENTABLE FIGURES-------------
 
-        console.log("this orders roi is " + marginalROI);
-        console.log("total roi is " + totalROI);
-        console.log("-------------");
-        
+        var rd_totalROI = totalROI.toFixed(2);
+        var rd_marginalROI = marginalROI.toFixed(2);
+                
      
 ;
         
@@ -114,10 +116,10 @@ $(function()
             y: aRate,
             orderNo: orderNum,
             side: orderSide,
-            profitMarginal: orderProfit, //CHANGED
-            profitTotal: totalProfit, //CHANGED
-            ROImarginal: marginalROI,
-            ROItotal: totalROI
+            //profitMarginal: orderProfit, //CHANGED
+            //profitTotal: totalProfit, //CHANGED
+            ROImarginal: rd_marginalROI,
+            ROItotal: rd_totalROI
         }
 
         generalDataSet.push(generalDataPoint);    
@@ -126,17 +128,15 @@ $(function()
         //------------POPULATING FOCUSED DATA SETS: BUY&HOLD, BOT PROFIT, DIFFERENCE-----------------------------
 
 
-        var buyAndHold = Math.floor(aRate/aInitialRate*10000)/100;
-        buyAndHold -= 100;
-        
-        
-        
+        var buyAndHold = (100*(aRate/aInitialRate)) - 100;     
         var difference = totalROI - buyAndHold;
 
-        buyAndHoldDataSet.push(buyAndHold);      
-        botProfitDataSet.push(totalROI);
+        buyAndHoldDataSet.push(buyAndHold.toFixed(2) + "%");      
+        botProfitDataSet.push(rd_totalROI + "%");
         dateDataSet.push(date);
-        differenceDataSet.push(difference);    
+        differenceDataSet.push(difference.toFixed(2) + "%"); 
+        
+        
         aFinalQty = aQtyAgg;
         bFinalQty = bQtyAgg;
     }
@@ -222,7 +222,7 @@ $(function()
                 } else if (data.side ==="BUY")
                 {
                         return '<ul>' +
-                    '<li>Side <b style="color:green"> ' + data.side + '</b></li>' +                
+                    '<li><b style="color:green"> ' + data.side + '</b></li>' +                
                     '<li>Marginal ROI <b> ' + data.ROImarginal + '%</b></li>' +
                     '<li>Total ROI <b> ' + data.ROItotal + '%</b></li>' +                                              
                     '</ul>';
@@ -237,7 +237,7 @@ $(function()
         },
         title:
         {
-            text: "Bot's Transactions, showing Marginal & Total Profits",
+            text: "Order Chart with Profit Data",
             align: "center"
         }
 
@@ -256,11 +256,11 @@ $(function()
     {
         series: 
         [{
-            name: "Bot Profit",
+            name: "Bot ROI",
             data: botProfitDataSet,
         },
         {
-            name: "Buy & Hold Profit",
+            name: "Buy & Hold ROI",
             data: buyAndHoldDataSet,
         }],
         chart: 
@@ -287,7 +287,7 @@ $(function()
         },
         title: 
         {
-            text: "Bot Performance Compared with 'Buy & Hold' Strategy",
+            text: "Bot Performance Compared with 'Buy & Hold' (%)",
             align: "center"
         },      
         markers: 
@@ -307,7 +307,7 @@ $(function()
         {
             title: 
             {
-                text: "Profits (£)"
+                text: "Return on Investment (%)"
             }
         },
         tooltip: 
@@ -315,7 +315,7 @@ $(function()
             custom: function({series, seriesIndex, dataPointIndex, w}) 
             {
                 return '<ul>' +
-                '<li><b>Difference</b>: ' + "£" + differenceDataSet[dataPointIndex] + '</li>' +                                        
+                '<li>Difference<b> ' + differenceDataSet[dataPointIndex] + '</b></li>' +                                        
                 '</ul>';
             }
             
@@ -329,12 +329,5 @@ $(function()
     var charts = new ApexCharts(document.querySelector("#data-chart-2"), chartTwo);
     charts.render();
 
-
-    //------------------POPULATES DATA TABLE--------------------
-
-    document.getElementById("BNB-holdings").innerHTML = aFinalQty;
-    document.getElementById("GBP-holdings").innerHTML = "£" + bFinalQty;
-    document.getElementById("b-and-h").innerHTML = "£" + buyAndHoldDataSet[buyAndHoldDataSet.length - 1];
-    document.getElementById("bot-profit").innerHTML = "£" + botProfitDataSet[botProfitDataSet.length -1];
 
 });

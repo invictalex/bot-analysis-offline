@@ -20,4 +20,4 @@ Alex Christodoulou
 
 ## Project notes
 
-
+API call the general bot info array, convert the data into an object. Use the data to set initial rate value.
